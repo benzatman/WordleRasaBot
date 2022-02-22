@@ -1,0 +1,51 @@
+version: "2.0"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+
+- story: game start
+  steps:
+  - intent: game_start
+  - action: utter_game_start
+
+- story: next suggestion
+  steps:
+  - intent: result
+  - action: action_wordle_suggestion
+
+- story: winner
+  steps:
+  - intent: correct
+  - action: action_we_won
+
+- story: loser
+  steps:
+  - intent: lost
+  - action: action_we_lost
+

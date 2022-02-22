@@ -1,0 +1,138 @@
+version: "2.0"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - game_start
+  - result
+  - correct
+  - lost
+
+entities:
+  - result
+
+slots:
+  previous_word:
+    type: rasa.shared.core.slots.AnySlot
+    initial_value: 'irate'
+    auto_fill: false
+    influence_conversation: false
+  available_words:
+    type: rasa.shared.core.slots.AnySlot
+    initial_value: []
+    auto_fill: false
+    influence_conversation: false
+  available_letters:
+    type: rasa.shared.core.slots.AnySlot
+    initial_value: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+    auto_fill: false
+    influence_conversation: false
+  unavailable_letters:
+    type: rasa.shared.core.slots.AnySlot
+    initial_value: []
+    auto_fill: false
+    influence_conversation: false
+  slot_1:
+    type: rasa.shared.core.slots.AnySlot
+    initial_value: '*'
+    auto_fill: false
+    influence_conversation: false
+  slot_2:
+    type: rasa.shared.core.slots.AnySlot
+    initial_value: '*'
+    auto_fill: false
+    influence_conversation: false
+  slot_3:
+    type: rasa.shared.core.slots.AnySlot
+    initial_value: '*'
+    auto_fill: false
+    influence_conversation: false
+  slot_4:
+    type: rasa.shared.core.slots.AnySlot
+    initial_value: '*'
+    auto_fill: false
+    influence_conversation: false
+  slot_5:
+    type: rasa.shared.core.slots.AnySlot
+    initial_value: '*'
+    auto_fill: false
+    influence_conversation: false
+  green_letters:
+    type: rasa.shared.core.slots.AnySlot
+    initial_value: [ ]
+    auto_fill: false
+    influence_conversation: false
+  yellow_letters:
+    type: rasa.shared.core.slots.AnySlot
+    initial_value: []
+    auto_fill: false
+    influence_conversation: false
+  yl_1:
+    type: rasa.shared.core.slots.AnySlot
+    initial_value: [0, 1, 2, 3, 4]
+    auto_fill: false
+    influence_conversation: false
+  yl_2:
+    type: rasa.shared.core.slots.AnySlot
+    initial_value: [0, 1, 2, 3, 4]
+    auto_fill: false
+    influence_conversation: false
+  yl_3:
+    type: rasa.shared.core.slots.AnySlot
+    initial_value: [0, 1, 2, 3, 4]
+    auto_fill: false
+    influence_conversation: false
+  yl_4:
+    type: rasa.shared.core.slots.AnySlot
+    initial_value: [0, 1, 2, 3, 4]
+    auto_fill: false
+    influence_conversation: false
+  yl_5:
+    type: rasa.shared.core.slots.AnySlot
+    initial_value: [0, 1, 2, 3, 4]
+    auto_fill: false
+    influence_conversation: false
+
+
+responses:
+  utter_greet:
+  - text: "Hey! How are you?"
+
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_happy:
+  - text: "Great, carry on!"
+
+  utter_goodbye:
+  - text: "Bye"
+
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+
+  utter_game_start:
+  - text: "Welcome to my wordle bot, for you first word we suggest 'irate',
+    after this please reply to every message with either 'correct' if we got the word
+    or an encrypted response the encryption is y=yellow, g=green, *=gray,
+    so if your result was grey,grey,green,yellow, gray you would type '**gy*.
+    if we ran out of tries type 'we lost'
+    Thanks for playing with us hope this helps"
+
+
+actions:
+ - action_wordle_suggestion
+ - action_we_won
+ - action_we_lost
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
